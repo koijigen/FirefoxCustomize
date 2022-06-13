@@ -192,7 +192,14 @@
 })();
 
 //	起動時にセット
-window.addEventListener('MozAfterPaint', toolbarsset, { once: true });
+window.addEventListener('MozAfterPaint', function(){
+	toolbarsset(); 
+	//	デフォルトでTabsToolbar,nav-barを自動開閉とする
+	document.getElementById('nav-bar').setAttribute('barAuto', 'true');
+	document.getElementById('nav-bar').removeAttribute('collapsed');
+	document.getElementById('TabsToolbar').setAttribute('barAuto', 'true');
+	document.getElementById('TabsToolbar').removeAttribute('collapsed');
+	}, { once: true });
 
 //	ESCキーでTabsToolbar,nav-barを強制表示
 document.addEventListener('keydown', function (event) {
